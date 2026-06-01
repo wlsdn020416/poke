@@ -4,6 +4,7 @@ const MOCK_API = "https://6a1ce1e58858a003817c2346.mockapi.io/pokemon";
 const FIRST_GENERATION_MIN_ID = 1;
 const FIRST_GENERATION_MAX_ID = 151;
 const STORAGE_KEY = "pokemon-quiz-player";
+const SOUND_STORAGE_KEY = "pokemon-quiz-sound-enabled";
 
 const typeLabels = {
   normal: "노말",
@@ -137,15 +138,50 @@ const defaultPlayer = {
 
 let player = loadPlayer();
 let currentPokemon = null;
+let cryAudio = null;
+let soundEnabled = loadSoundPreference();
 let answered = false;
 
 document.addEventListener("DOMContentLoaded", () => {
   initFullscreenButton();
+  initSoundButton();
   const page = document.body.dataset.page;
   if (page === "home") initHome();
   if (page === "normal") initGame("normal");
   if (page === "rank") initGame("rank");
 });
+
+function loadSoundPreference() {
+  return localStorage.getItem(SOUND_STORAGE_KEY) !== "false";
+}
+
+function saveSoundPreference() {
+  localStorage.setItem(SOUND_STORAGE_KEY, String(soundEnabled));
+}
+
+function initSoundButton() {
+  const button = document.querySelector("#soundButton");
+  if (!button) return;
+
+  updateSoundButton();
+  button.addEventListener("click", () => {
+    soundEnabled = !soundEnabled;
+    if (!soundEnabled && cryAudio) {
+      cryAudio.pause();
+      cryAudio.currentTime = 0;
+    }
+    saveSoundPreference();
+    updateSoundButton();
+  });
+}
+
+function updateSoundButton() {
+  const button = document.querySelector("#soundButton");
+  if (!button) return;
+  button.textContent = soundEnabled ? "♪" : "×";
+  button.setAttribute("aria-label", soundEnabled ? "소리 끄기" : "소리 켜기");
+  button.classList.toggle("is-muted", !soundEnabled);
+}
 
 function initFullscreenButton() {
   const button = document.querySelector("#fullscreenButton");
@@ -449,14 +485,17 @@ async function loadQuestion() {
 
   try {
     currentPokemon = await fetchRandomPokemon();
+    image.onload = () => {
+      loading.classList.add("is-hidden");
+      image.classList.add("is-visible");
+      playPokemonCry(currentPokemon);
+      image.onload = null;
+    };
     image.src = currentPokemon.image;
     image.alt = `${currentPokemon.name} 이미지`;
     applyPokemonTheme(currentPokemon);
     renderPokemonPreview(currentPokemon);
-    image.onload = () => {
-      loading.classList.add("is-hidden");
-      image.classList.add("is-visible");
-    };
+    if (image.complete) image.onload();
     input.disabled = false;
     input.focus();
   } catch (error) {
@@ -498,6 +537,7 @@ async function fetchRandomPokemon() {
     baseExperience: data.base_experience || 0,
     types: data.types.map((item) => item.type.name),
     image: sprite,
+    cry: data.cries?.latest || data.cries?.legacy || "",
   };
 }
 
@@ -508,6 +548,25 @@ function getPixelSprite(sprites) {
     sprites?.versions?.["generation-ii"]?.crystal?.front_default ||
     sprites?.front_default
   );
+}
+
+function playPokemonCry(pokemon) {
+  if (!soundEnabled) return;
+  if (!pokemon?.cry) return;
+
+  try {
+    if (cryAudio) {
+      cryAudio.pause();
+      cryAudio.currentTime = 0;
+    }
+
+    cryAudio = new Audio(pokemon.cry);
+    cryAudio.volume = 0.45;
+    const playPromise = cryAudio.play();
+    if (playPromise) playPromise.catch(() => {});
+  } catch (error) {
+    console.warn("Pokemon cry playback failed", error);
+  }
 }
 
 async function submitAnswer(mode) {

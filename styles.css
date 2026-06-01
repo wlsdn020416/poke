@@ -94,11 +94,16 @@ button:disabled {
   box-shadow: none;
 }
 
-.fullscreen-button {
+.utility-buttons {
   position: fixed;
   top: 16px;
   right: 16px;
   z-index: 50;
+  display: flex;
+  gap: 8px;
+}
+
+.utility-button {
   width: 44px;
   min-width: 44px;
   height: 44px;
@@ -109,6 +114,10 @@ button:disabled {
   color: var(--ink);
   font-size: 1.35rem;
   line-height: 1;
+}
+
+.utility-button.is-muted {
+  opacity: 0.62;
 }
 
 input {
