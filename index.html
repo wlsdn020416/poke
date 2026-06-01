@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PORENA Quiz & Adventure | 포켓몬 스프라이트 퀴즈</title>
+    <meta
+      name="description"
+      content="PORENA Quiz & Adventure에서 1세대 포켓몬 스프라이트를 보고 이름을 맞히고, 코인을 모아 랭크 모드에 도전하세요."
+    />
+    <meta name="keywords" content="PORENA, 포켓몬 퀴즈, PokeAPI, 포켓몬 스프라이트, 랭크 모드" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="PORENA Quiz & Adventure" />
+    <meta
+      property="og:description"
+      content="1세대 포켓몬 스프라이트를 보고 이름을 맞히는 픽셀 퀴즈 게임입니다."
+    />
+    <meta property="og:image" content="./assets/porena.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PORENA Quiz & Adventure" />
+    <meta
+      name="twitter:description"
+      content="코인을 모으고 랭크를 올리는 포켓몬 스프라이트 퀴즈 게임입니다."
+    />
+    <meta name="twitter:image" content="./assets/porena.png" />
+    <link rel="icon" href="./assets/porena.png" type="image/png" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "PORENA Quiz & Adventure",
+        "applicationCategory": "GameApplication",
+        "description": "1세대 포켓몬 스프라이트를 보고 이름을 맞히는 픽셀 퀴즈 게임입니다.",
+        "image": "./assets/porena.png"
+      }
+    </script>
+  </head>
+  <body data-page="home">
+    <button id="fullscreenButton" class="fullscreen-button" type="button" aria-label="전체화면 전환">⛶</button>
+    <main class="home-shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">PokeAPI Random Quiz</p>
+          <h1 class="logo-title">
+            <img src="./assets/porena.png" alt="PORENA Quiz & Adventure" />
+          </h1>
+          <p class="lead">
+            랜덤으로 등장하는 포켓몬 이미지를 보고 이름을 맞춰보세요.
+            일반 모드에서 코인을 모으고, 랭크 모드에서 마스터볼까지 올라가세요.
+          </p>
+          <div class="player-panel auth-panel">
+            <label for="playerName">플레이어 로그인</label>
+            <div class="auth-row">
+              <input id="playerName" type="text" maxlength="18" placeholder="이름" />
+              <input id="playerPassword" type="password" maxlength="24" placeholder="비밀번호" />
+              <button id="savePlayer" type="button">로그인</button>
+            </div>
+            <p id="playerStatus" class="muted">계정이 없으면 입력한 이름과 비밀번호로 새로 생성됩니다.</p>
+          </div>
+          <div class="mode-grid">
+            <a class="mode-card normal" href="./normal.html">
+              <strong>일반 모드</strong>
+              <p>정답을 맞히면 코인을 얻고, 틀리면 정답 이름을 확인하며 계속 플레이합니다.</p>
+            </a>
+            <a class="mode-card rank" href="./rank.html">
+              <strong>랭크 모드</strong>
+              <p>코인을 걸고 도전하며, 정답을 맞혀 랭크 점수를 올려 마스터볼에 도달합니다.</p>
+            </a>
+          </div>
+        </div>
+        <div class="hero-stage" aria-label="Pokemon quiz preview">
+          <div class="orbital-card">
+            <div class="preview-badge">?</div>
+            <img
+              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/yellow/25.png"
+              alt="Pikachu sprite preview"
+            />
+          </div>
+          <div class="stats-strip">
+            <div>
+              <span>Coins</span>
+              <strong id="homeCoins">0</strong>
+            </div>
+            <div>
+              <span>Rank Score</span>
+              <strong id="homeRankScore">0</strong>
+            </div>
+            <div>
+              <span>Rank</span>
+              <strong id="homeRankName">몬스터볼</strong>
+            </div>
+          </div>
+          <section class="live-ranking" aria-label="실시간 랭크 시스템">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Live Ranking</p>
+                <h2>실시간 랭크 시스템</h2>
+              </div>
+              <span id="rankingUpdated">대기 중</span>
+            </div>
+            <div class="ranking-table">
+              <div class="ranking-head">
+                <span>순위</span>
+                <span>플레이어</span>
+                <span>점수</span>
+                <span>랭크</span>
+                <span>코인</span>
+              </div>
+              <div id="rankingList" class="ranking-list">
+                <p class="ranking-empty">랭킹을 불러오는 중입니다.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+    <script src="./app.js" defer></script>
+  </body>
+</html>

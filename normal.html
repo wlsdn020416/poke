@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>일반 모드 | PORENA Quiz & Adventure</title>
+    <meta
+      name="description"
+      content="PORENA 일반 모드에서 1세대 포켓몬 스프라이트를 보고 이름을 맞히며 코인을 모으세요."
+    />
+    <meta property="og:title" content="PORENA Quiz & Adventure 일반 모드" />
+    <meta property="og:description" content="포켓몬 스프라이트 이름 맞히기 일반 모드입니다." />
+    <meta property="og:image" content="./assets/porena.png" />
+    <link rel="icon" href="./assets/porena.png" type="image/png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="normal">
+    <button id="fullscreenButton" class="fullscreen-button" type="button" aria-label="전체화면 전환">⛶</button>
+    <header class="topbar">
+      <a href="./index.html" class="brand-logo">
+        <img src="./assets/porena.png" alt="PORENA Quiz & Adventure" />
+      </a>
+      <nav>
+        <a href="./normal.html" aria-current="page">일반</a>
+        <a href="./rank.html">랭크</a>
+      </nav>
+    </header>
+    <main class="game-shell">
+      <section class="game-header">
+        <div>
+          <p class="eyebrow">Normal Mode</p>
+          <h1>일반 모드</h1>
+        </div>
+        <div class="scoreboard">
+          <div><span>Coins</span><strong id="coins">0</strong></div>
+        </div>
+      </section>
+
+      <section class="quiz-layout">
+        <div class="pokemon-stage">
+          <div id="loading" class="loading">포켓몬 소환 중...</div>
+          <img id="pokemonImage" alt="랜덤 포켓몬" />
+        </div>
+        <form id="guessForm" class="answer-panel">
+          <label for="guessInput">이름 입력</label>
+          <div class="answer-row">
+            <input id="guessInput" type="text" autocomplete="off" placeholder="예: pikachu 또는 피카츄" />
+            <button type="submit">정답</button>
+          </div>
+          <p id="resultText" class="result-text">이미지를 보고 포켓몬 이름을 맞춰보세요.</p>
+          <section class="dex-panel" aria-label="포켓몬 API 정보">
+            <div class="dex-heading">
+              <span id="dexNumber">No.---</span>
+              <strong id="dexName">Who's that Pokemon?</strong>
+            </div>
+            <div id="typeBadges" class="type-badges"></div>
+            <div class="dex-metrics">
+              <div><span>Height</span><strong id="pokemonHeight">--</strong></div>
+              <div><span>Weight</span><strong id="pokemonWeight">--</strong></div>
+              <div><span>Base Exp</span><strong id="pokemonExp">--</strong></div>
+            </div>
+            <p id="dexFlavor" class="dex-flavor">정답을 맞히거나 틀리면 도감 설명이 공개됩니다.</p>
+          </section>
+          <div class="actions">
+            <button id="nextButton" type="button">다음 문제</button>
+            <a class="secondary-button" href="./index.html">그만두기</a>
+          </div>
+        </form>
+      </section>
+    </main>
+    <script src="./app.js" defer></script>
+  </body>
+</html>

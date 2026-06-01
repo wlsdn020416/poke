@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">PORENA Quiz and Adventure</title>
+  <desc id="desc">Black and white pixel style PORENA Quiz and Adventure logo.</desc>
+  <rect width="960" height="420" fill="#fff"/>
+  <g fill="none" stroke="#000" stroke-width="12" stroke-linejoin="miter" stroke-linecap="square">
+    <circle cx="155" cy="115" r="58" fill="#fff"/>
+    <path d="M101 115h108"/>
+    <circle cx="155" cy="115" r="18" fill="#fff"/>
+    <circle cx="155" cy="115" r="6" fill="#000" stroke="none"/>
+    <path d="M122 78h38m-51 17h22"/>
+
+    <path d="M690 105h58v112h-58z"/>
+    <path d="M719 105V73m-35 34-19-19m108 19 19-19"/>
+    <path d="M690 72c0-37 58-37 58 0"/>
+    <path d="M697 132h44m-44 24h44"/>
+
+    <path d="M96 255H864"/>
+    <path d="M82 255l28 24-28 24h120l26-32c137-20 328-20 465 0l26 32h159l-28-24 28-24"/>
+    <path d="M180 264c145-25 455-25 600 0"/>
+    <circle cx="190" cy="294" r="42" fill="#fff"/>
+    <path d="M175 279c22 4 31 17 29 36"/>
+    <path d="M725 273l95 18-16 74-95-18z"/>
+    <path d="M747 295l24 5m-30 18 24 5m-30 18 24 5"/>
+    <path d="M823 292l69 15-14 66-69-15z"/>
+    <path d="M840 315l17 4m-23 16 17 4m-23 16 17 4"/>
+  </g>
+  <g font-family="Impact, Arial Black, sans-serif" font-weight="900" letter-spacing="-4">
+    <text x="100" y="245" font-size="138" fill="#000">PORENA</text>
+    <text x="103" y="232" font-size="138" fill="#fff" stroke="#000" stroke-width="9">PORENA</text>
+  </g>
+  <g font-family="Courier New, monospace" font-weight="900" fill="#000">
+    <text x="292" y="307" font-size="34">QUIZ &amp; ADVENTURE!</text>
+  </g>
+</svg>

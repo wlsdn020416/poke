@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>랭크 모드 | PORENA Quiz & Adventure</title>
+    <meta
+      name="description"
+      content="PORENA 랭크 모드에서 코인을 걸고 포켓몬 스프라이트 퀴즈에 도전해 마스터볼 랭크까지 올라가세요."
+    />
+    <meta property="og:title" content="PORENA Quiz & Adventure 랭크 모드" />
+    <meta property="og:description" content="코인을 걸고 마스터볼까지 도전하는 포켓몬 퀴즈 랭크 모드입니다." />
+    <meta property="og:image" content="./assets/porena.png" />
+    <link rel="icon" href="./assets/porena.png" type="image/png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-page="rank">
+    <button id="fullscreenButton" class="fullscreen-button" type="button" aria-label="전체화면 전환">⛶</button>
+    <header class="topbar">
+      <a href="./index.html" class="brand-logo">
+        <img src="./assets/porena.png" alt="PORENA Quiz & Adventure" />
+      </a>
+      <nav>
+        <a href="./normal.html">일반</a>
+        <a href="./rank.html" aria-current="page">랭크</a>
+      </nav>
+    </header>
+    <main class="game-shell">
+      <section class="game-header">
+        <div>
+          <p class="eyebrow">Rank Mode</p>
+          <h1>랭크 모드</h1>
+        </div>
+        <div class="scoreboard">
+          <div><span>Coins</span><strong id="coins">0</strong></div>
+          <div><span>Rank Score</span><strong id="rankScore">0</strong></div>
+          <div><span>Rank</span><strong id="rankName">몬스터볼</strong></div>
+        </div>
+      </section>
+
+      <section class="rank-progress" aria-label="랭크 진행도">
+        <div class="rank-ball-card">
+          <img id="rankBallImage" src="" alt="현재 랭크 볼" />
+          <div>
+            <span>Current Ball</span>
+            <strong id="rankBallLabel">몬스터볼</strong>
+          </div>
+        </div>
+        <div class="progress-track"><span id="rankProgress"></span></div>
+        <div class="rank-labels">
+          <span>몬스터볼</span>
+          <span>슈퍼볼</span>
+          <span>하이퍼볼</span>
+          <span>마스터볼</span>
+        </div>
+      </section>
+
+      <section class="quiz-layout">
+        <div class="pokemon-stage">
+          <div id="loading" class="loading">포켓몬 소환 중...</div>
+          <img id="pokemonImage" alt="랜덤 포켓몬" />
+        </div>
+        <form id="guessForm" class="answer-panel">
+          <label for="guessInput">이름 입력</label>
+          <div class="answer-row">
+            <input id="guessInput" type="text" autocomplete="off" placeholder="예: charizard 또는 리자몽" />
+            <button type="submit">정답</button>
+          </div>
+          <p id="resultText" class="result-text">정답이면 랭크 점수 +1, 오답이면 코인 -1입니다.</p>
+          <section class="dex-panel" aria-label="포켓몬 API 정보">
+            <div class="dex-heading">
+              <span id="dexNumber">No.---</span>
+              <strong id="dexName">Who's that Pokemon?</strong>
+            </div>
+            <div id="typeBadges" class="type-badges"></div>
+            <div class="dex-metrics">
+              <div><span>Height</span><strong id="pokemonHeight">--</strong></div>
+              <div><span>Weight</span><strong id="pokemonWeight">--</strong></div>
+              <div><span>Base Exp</span><strong id="pokemonExp">--</strong></div>
+            </div>
+            <p id="dexFlavor" class="dex-flavor">정답을 제출하면 도감 설명이 공개됩니다.</p>
+          </section>
+          <div class="actions">
+            <button id="nextButton" type="button">다음 문제</button>
+            <a class="secondary-button" href="./index.html">나가기</a>
+          </div>
+        </form>
+      </section>
+    </main>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
