@@ -296,7 +296,7 @@ async function loginPlayer(name, password) {
   try {
     const existing = await findMockPlayer(name);
     if (existing && existing.password && existing.password !== password) {
-      return { ok: false, message: "비밀번호가 일치하지 않습니다." };
+      return { ok: false, message: "이미 있는 이름입니다." };
     }
 
     player = {
