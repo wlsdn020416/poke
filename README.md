@@ -1,5 +1,7 @@
 # PORENA Quiz & Adventure
 
+![PORENA Quiz & Adventure 로고](./assets/porena.png)
+
 1세대 포켓몬 스프라이트 이미지를 보고 이름을 맞히는 픽셀 스타일 퀴즈 게임입니다. PokeAPI로 포켓몬 이미지와 도감 데이터를 불러오고, MockAPI로 플레이어 계정/코인/랭크 점수를 저장합니다.
 
 ## 실행 방법
